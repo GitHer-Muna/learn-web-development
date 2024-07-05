@@ -1,0 +1,145 @@
+<!-- This sample form is created in order to collect data from intrested registrants for an upcoming 
+webiner to be organized on one of available topics of intrest in Microsoft Teams(Online platform). 
+The information about the event is published with link to this form to collect
+information about them for providing certificate of completion, send them with gift vouchers through email,
+confirm their absence through phone calls(in case), their queries related to the events, keep program stats,
+etc. The information collected this time could be used up to inform them about any future events that might
+happen as well any sooner. Registrants could become participants, volunteer or even sponsers for the event. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" type="text/css" href="myform.css">
+	<style>
+        input{
+            border:1px solid;
+        }
+        fieldset{
+            margin-bottom:4%;
+        }
+		h1{
+			padding: 10px;
+			background-color:blue;
+			color:white;
+			text-align: center;
+		}
+		footer{
+			text-align: center;
+		}
+      
+	</style>
+
+    <!--Validation function statred from here under javascript. You cannot submit this form if some of the area where I have applied javascript are left unfilled.
+    Validation measures are required in places with vital information for their submission.-->
+
+    <script type="text/javascript">
+
+    function validate_form()
+    {
+        valid=true;
+
+        if ( document.contact_form.contact_firstname.value == "" )
+        {
+
+          alert ( "Please fill in the 'Your firstName' box." );
+          valid = false;
+
+        }
+
+     return valid;
+    }
+
+    </script>
+	
+</head>
+<body>
+
+<h1 id="h1">Servey Form Fill Up</h1>
+
+<a href="form.html">Contact me</a>
+
+<h3 id="h3">Please assist us collecting data</h3>
+<p id="par"> Welcome </p>
+<form action="mysubmitpage.html" method="post" onsubmit="return validateform();">
+	<fieldset>
+		<legend>Please fill your details here!</legend><br>
+	<label>First Name</label>
+	<input type="text" name="first name" placeholder="Enter first name" pattern="[a-zA-Z]{1-30}" required>
+    
+    <br>
+    <label>Last Name</label>
+    <input type="text" name="last name" placeholder="Enter last name" pattern="[a-zA-Z]{1-30}" required>
+
+    <br>
+    <label>Email id</label>
+    <input type="email" name="email id" placeholder="Enter your full email" required>
+    <br>
+
+    <label>Phone Number</label>
+    <input type="text" name="Country_code" placeholder="+XX" pattern="[0-9+]{1-3}" required>
+    <input type="tel" name="number" placeholder="9XXXXXXXXX" pattern="[0-9]{6-10}" required>
+    <br>
+    <br>
+
+
+    <br>
+    <br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob"><br>
+    
+    <label>Gender</label>
+    <input type="radio" name="gender">Male
+    <input type="radio" name="gender">Female
+    <input type="radio" name="gender">other
+    
+    <br>
+    <label>Choose country:</label>
+    <select>
+    	<option>Nepal</option>
+    	<option>India</option>
+    	<option>China</option>
+
+    </select>
+    <br>
+    
+    <label>Your Interest[You can choose only one item]</label>
+    <input type="checkbox"  value="html" name="Interest">HTML
+    <input type="checkbox"  value="css" name="Interest">CSS
+    <input type="checkbox"  value="javascript" name="Interest">Javascript
+
+    <br>
+    <br>
+    <label>Choose your role</label>
+    <input type="radio" name="role" required >Event volunteer
+    <input type="radio" name="role" required >Event Participants
+    <input type="radio" name="role" required >Event Sponsor
+
+    <br>
+    <br>
+    <label>Questions(If any):</label>
+    <textarea id="submit" name="submit" placeholder="Please write something"
+    style="height:100px">
+    </textarea>
+    <img src="submit.jpg" alt="submit buttom icon" width="48px"; height="48px";>
+    <br>
+    <br>
+    <label><b>Solve this captcha to confirm your submission:</b></label>
+    <br>
+    <label>Prove you are a human! Solve this:</label>
+	<input type="text" name="Answer here:" placeholder="3 x 4 + 8 = ??" accept="20" required>
+    <br>
+    <br>
+    <input type="reset">
+    <input type = "submit" value = "Verify">
+   
+    <a href="form.html">Click me</a>
+  
+    
+</fieldset>
+</form>
+</body>
+</html>

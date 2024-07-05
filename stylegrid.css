@@ -1,0 +1,36 @@
+*{margin: 0; padding: 0;}
+
+main{
+    width: 70%;
+    border: 2px solid blue;
+    margin: 50px auto;
+    color: white;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 2px;
+
+}
+
+
+.header{
+    margin: 50px auto;
+    width:50%;
+    border: 2px solid blue;
+    background-color: paleturquoise;
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 7%;
+    text-align: center;
+    
+}
+
+.menu{
+    margin: 50px auto;
+    width:50%;
+    border: 2px solid blue;
+    background-color: orange;
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 7%;
+    text-align: center;
+}
