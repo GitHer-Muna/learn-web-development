@@ -56,7 +56,7 @@ Take as much time as you need. Quality learning is more important than speed.
 # Create your workspace
 mkdir my-web-development-journey
 cd my-web-development-journey
-git clone [this-repo]
+git clone https://github.com/GitHer-Muna/learn-web-development.git
 cd project-01-personal-portfolio
 ```
 

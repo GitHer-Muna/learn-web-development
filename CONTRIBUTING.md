@@ -61,7 +61,7 @@ Add value for learners:
 ### 1. Fork & Clone
 ```bash
 # Fork the repository on GitHub, then:
-git clone https://github.com/your-username/intro-to-web-development.git
+git clone https://github.com/GitHer-Muna/learn-web-development.git
 cd intro-to-web-development
 ```
 

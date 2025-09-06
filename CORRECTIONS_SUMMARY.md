@@ -135,7 +135,7 @@ final-project/
 **Recommended Name:** `frontend-web-development-portfolio`
 
 **Alternative Names:**
-- `FWDD-Portfolio`
+- `Learn-Web-Development-Portfolio`
 - `html-css-js-learning-journey`
 - `second-semester-web-dev`
 - `frontend-fundamentals-portfolio`

@@ -64,7 +64,7 @@ This repository is designed to take you from **complete beginner** to **confiden
 1. **Fork this repository** (click the Fork button in the top right)
 2. **Clone your fork:**
    ```bash
-   git clone https://github.com/your-username/intro-to-web-development.git
+   git clone https://github.com/GitHer-Muna/learn-web-development.git
    cd intro-to-web-development
    ```
 3. **Start with Project 1:**
