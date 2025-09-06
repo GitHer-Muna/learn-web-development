@@ -1,5 +1,55 @@
 /* Restaurant Specific Styles */
 
+/* Food Placeholder Styles */
+.food-placeholder {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.food-placeholder:hover {
+    transform: scale(1.05);
+}
+
+.food-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.food-label {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* Menu page food placeholders */
+.breakfast-bg { background: linear-gradient(135deg, #ff9a56, #ff6b35); }
+.lunch-bg { background: linear-gradient(135deg, #a8e6cf, #7fcdcd); }
+.dinner-bg { background: linear-gradient(135deg, #786fa6, #546de5); }
+
+/* Specific food item backgrounds */
+.breakfast-1 { background: linear-gradient(135deg, #ffa502, #ff6348); }
+.breakfast-2 { background: linear-gradient(135deg, #ffb142, #ff7675); }
+.breakfast-3 { background: linear-gradient(135deg, #fd79a8, #e84393); }
+
+.lunch-1 { background: linear-gradient(135deg, #00b894, #00a085); }
+.lunch-2 { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+.lunch-3 { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+
+.dinner-1 { background: linear-gradient(135deg, #2d3436, #636e72); }
+.dinner-2 { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+.dinner-3 { background: linear-gradient(135deg, #6c5ce7, #fd79a8); }
+
 /* Restaurant Navigation */
 .nav-links .active {
     color: #f39c12 !important;
@@ -8,7 +58,7 @@
 
 /* Restaurant Hero */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/N.jpg');
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background-size: cover;
     background-position: center;
     min-height: 70vh;
