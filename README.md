@@ -52,6 +52,24 @@ This repository is designed to take you from **complete beginner** to **confiden
 - Advanced animations and interactions
 - Performance optimization
 
+## 🌐 Live Demos
+
+Try the projects online without downloading anything! Perfect for quick previews and mobile testing.
+
+| Project | Live Demo | Source Code | Skills Learned |
+|---------|-----------|-------------|----------------|
+| 📄 **Personal Portfolio** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-01-personal-portfolio/) | [View Code](project-01-personal-portfolio/) | HTML5, CSS3, Responsive Design |
+| 🍽️ **Restaurant Website** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-02-restaurant-website/) | [View Code](project-02-restaurant-website/) | Multi-page Sites, CSS Grid, Navigation |
+| 🧮 **Calculator App** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-03-javascript-apps/calculator/) | [View Code](project-03-javascript-apps/calculator/) | JavaScript, DOM Manipulation, Events |
+| ✅ **Todo App** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-04-dynamic-web-apps/todo-app/) | [View Code](project-04-dynamic-web-apps/todo-app/) | Local Storage, CRUD Operations |
+| 🌅 **Dynamic Greeting** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-04-dynamic-web-apps/dynamic-greeting/) | [View Code](project-04-dynamic-web-apps/dynamic-greeting/) | Time APIs, Dynamic Content |
+| ⏰ **Live Clock** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-04-dynamic-web-apps/live-clock/) | [View Code](project-04-dynamic-web-apps/live-clock/) | Real-time Updates, Timezones |
+| 🌤️ **Weather Dashboard** | [View Demo](https://GitHer-Muna.github.io/learn-web-development/project-04-dynamic-web-apps/weather-dashboard/) | [View Code](project-04-dynamic-web-apps/weather-dashboard/) | APIs, Geolocation, Data Visualization |
+
+### 🎓 Learning Resources
+- **[Interactive Examples](https://GitHer-Muna.github.io/learn-web-development/examples/)** - Try concepts hands-on
+- **[Practice Exercises](https://GitHer-Muna.github.io/learn-web-development/exercises/)** - Test your knowledge
+
 ## 🚀 Quick Start
 
 ### Prerequisites
