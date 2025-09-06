@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Web Development - Complete Beginner Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FF6B6B;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3748;
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #4ECDC4;
+        }
+
+        .feature h3 {
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>🚀 Learn Web Development</h1>
+            <p>Complete beginner-friendly guide to becoming a web developer</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Learning Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Code Examples</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Prerequisites</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free & Open</div>
+                </div>
+            </div>
+
+            <a href="LEARNING_PATH.md" class="cta-button">📚 Start Learning Journey</a>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <h2>Why This Course?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Project-Based</h3>
+                    <p>Learn by building real websites and applications that you can add to your portfolio.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>Progressive Learning</h3>
+                    <p>Each project builds on the previous one, gradually increasing in complexity and skills.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💻</div>
+                    <h3>Interactive Examples</h3>
+                    <p>Hands-on code playgrounds and tutorials to practice what you learn immediately.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community Driven</h3>
+                    <p>Open source project where you can contribute, get help, and help others learn.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">👤</div>
+                    <div class="project-title">Personal Portfolio</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Start with HTML and CSS basics. Build your first professional website to showcase yourself.
+                    </p>
+                    <div class="project-links">
+                        <a href="project-01-personal-portfolio/" class="btn btn-primary">
+                            🎯 Start Project
+                        </a>
+                        <a href="project-01-personal-portfolio/README.md" class="btn btn-secondary">
+                            📚 Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header" style="background: linear-gradient(45deg, #4ECDC4, #44A08D);">
+                    <div class="project-icon">🍽️</div>
+                    <div class="project-title">Restaurant Website</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Master advanced CSS with multi-page sites, CSS Grid, and professional layouts.
+                    </p>
+                    <div class="project-links">
+                        <a href="project-02-restaurant-website/" class="btn btn-primary">
+                            🍴 View Site
+                        </a>
+                        <a href="project-02-restaurant-website/README.md" class="btn btn-secondary">
+                            📖 Learn
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header" style="background: linear-gradient(45deg, #F093FB, #F5576C);">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-title">JavaScript Apps</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Learn programming with JavaScript. Build interactive calculators and dynamic applications.
+                    </p>
+                    <div class="project-links">
+                        <a href="project-03-javascript-apps/" class="btn btn-primary">
+                            🧮 Try Apps
+                        </a>
+                        <a href="project-03-javascript-apps/README.md" class="btn btn-secondary">
+                            💡 Start
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                    <div class="project-icon">🌟</div>
+                    <div class="project-title">Dynamic Web Apps</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        Advanced JavaScript features, APIs, data storage, and modern web development techniques.
+                    </p>
+                    <div class="project-links">
+                        <a href="project-04-dynamic-web-apps/" class="btn btn-primary">
+                            ✨ Explore
+                        </a>
+                        <a href="project-04-dynamic-web-apps/README.md" class="btn btn-secondary">
+                            🚀 Advanced
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="features">
+            <h2>Additional Resources</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <h3><a href="examples/" style="text-decoration: none; color: inherit;">Interactive Examples</a></h3>
+                    <p>CSS Grid playground, JavaScript tutorials, and hands-on coding exercises.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💪</div>
+                    <h3><a href="exercises/" style="text-decoration: none; color: inherit;">Practice Exercises</a></h3>
+                    <p>Challenges and projects organized by difficulty to test your skills.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3><a href="resources/" style="text-decoration: none; color: inherit;">Learning Resources</a></h3>
+                    <p>Curated guides, references, and tools for web development mastery.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤝</div>
+                    <h3><a href="CONTRIBUTING.md" style="text-decoration: none; color: inherit;">Contribute</a></h3>
+                    <p>Help improve this course and contribute to the learning community.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; color: white; padding: 40px 20px;">
+            <h3 style="margin-bottom: 20px;">Ready to Start Coding?</h3>
+            <p style="margin-bottom: 30px; opacity: 0.9;">
+                Join thousands of students learning web development with this comprehensive, free course.
+            </p>
+            <a href="project-01-personal-portfolio/" class="cta-button">
+                🚀 Begin Your Journey
+            </a>
+            <div style="margin-top: 40px; opacity: 0.8;">
+                <p>Open Source • Student Friendly • Always Improving</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple interaction for better user experience
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic greeting
+        const hour = new Date().getHours();
+        const heroText = document.querySelector('.hero p');
+        
+        if (hour < 12) {
+            heroText.textContent = 'Good morning! Ready to start your web development journey?';
+        } else if (hour < 18) {
+            heroText.textContent = 'Good afternoon! Perfect time to learn web development.';
+        } else {
+            heroText.textContent = 'Good evening! Start your coding journey today.';
+        }
+    </script>
+</body>
+</html>

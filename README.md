@@ -1,9 +1,9 @@
-# 🌐 Introduction to Web Development - Complete Learning Guide
+# 🌐 Learn Web Development - Complete Beginner Guide
 
-[![Beginner Friendly](https://img.shields.io/badge/Beginner-Friendly-green.svg)](https://github.com/GitHer-Muna/intro-to-web-development)
+[![Beginner Friendly](https://img.shields.io/badge/Beginner-Friendly-green.svg)](https://github.com/GitHer-Muna/learn-web-development)
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/GitHer-Muna/intro-to-web-development.svg)](https://github.com/GitHer-Muna/intro-to-web-development/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/GitHer-Muna/learn-web-development.svg)](https://github.com/GitHer-Muna/learn-web-development/stargazers)
 
 > 📚 A comprehensive, hands-on learning repository for web development beginners. Learn HTML, CSS, and JavaScript through 4 progressive projects!
 
@@ -220,3 +220,17 @@ I'm a fellow student passionate about web development and helping others learn!
 - 🌐 **Portfolio:** [your-portfolio-website.com](https://your-portfolio-website.com)
 
 *Let's learn and grow together!* 🌱
+
+---
+
+## 📝 Repository Information
+
+**Recommended Repository Name:** `learn-web-development`
+
+This repository has been structured as a comprehensive learning resource. The suggested name `learn-web-development` is:
+- Clear and descriptive
+- SEO-friendly for GitHub search
+- Easy to remember and share
+- Professional yet approachable
+
+Feel free to fork this repository and customize it for your own learning journey or teaching purposes!
