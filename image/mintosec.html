@@ -6,16 +6,13 @@
 </head>
 <body>
   <script>
-    function convertSecondstoMinutes(minutes) 
-    {
-      return (minutes / 60);
-    }
+    function convertSecondsToMinutes(seconds) 
+    {
+      return (seconds / 60);
+    }
 
-
-    documnent.getElementByID()
-    var secondsToMinutes = convertsecondtominutes(4); // convert second to minutes javascript 
-    document.write( "Result of converting second to minutes :- " + secondTominutes ); 
- 
-  </script>  
+    document.getElementById("demo").innerHTML = "Seconds: 240, Minutes: " + convertSecondsToMinutes(240);
+    var secondsToMinutes = convertSecondsToMinutes(240);
+    document.write( "Result of converting seconds to minutes: " + secondsToMinutes );  </script>  
 </body>
 </html>

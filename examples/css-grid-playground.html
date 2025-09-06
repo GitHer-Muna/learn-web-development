@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Examples - Interactive Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .example-section {
+            margin-bottom: 60px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .example-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .example-header h2 {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .example-header p {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        .example-content {
+            padding: 30px;
+        }
+
+        /* Example 1: Basic Grid */
+        .basic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .grid-item {
+            background: linear-gradient(45deg, #FF9A8B, #A8E6CF);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Example 2: Layout Grid */
+        .layout-grid {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "nav main sidebar"
+                "footer footer footer";
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-rows: auto 1fr auto;
+            gap: 15px;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+
+        .layout-header { 
+            grid-area: header; 
+            background: #FF6B6B;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .layout-nav { 
+            grid-area: nav; 
+            background: #4ECDC4;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .layout-main { 
+            grid-area: main; 
+            background: #45B7D1;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .layout-sidebar { 
+            grid-area: sidebar; 
+            background: #F7DC6F;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .layout-footer { 
+            grid-area: footer; 
+            background: #BB8FCE;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* Example 3: Responsive Cards */
+        .responsive-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Code examples */
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-comment {
+            color: #68d391;
+        }
+
+        .code-property {
+            color: #90cdf4;
+        }
+
+        .code-value {
+            color: #fbb6ce;
+        }
+
+        /* Interactive controls */
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .control-group select,
+        .control-group input[type="number"] {
+            padding: 8px 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .basic-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .layout-grid {
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "main"
+                    "sidebar"
+                    "footer";
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 CSS Grid Playground</h1>
+            <p>Interactive examples to master CSS Grid layouts</p>
+        </div>
+
+        <div class="content">
+            <!-- Example 1: Basic Grid -->
+            <div class="example-section">
+                <div class="example-header">
+                    <h2>📊 Basic Grid Layout</h2>
+                    <p>Learn the fundamentals of creating grid layouts with equal columns</p>
+                </div>
+                <div class="example-content">
+                    <div class="basic-grid" id="basicGrid">
+                        <div class="grid-item">Item 1</div>
+                        <div class="grid-item">Item 2</div>
+                        <div class="grid-item">Item 3</div>
+                        <div class="grid-item">Item 4</div>
+                        <div class="grid-item">Item 5</div>
+                        <div class="grid-item">Item 6</div>
+                    </div>
+
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="columnCount">Number of Columns:</label>
+                            <input type="range" id="columnCount" min="1" max="6" value="3">
+                            <span id="columnValue">3</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="gapSize">Gap Size (px):</label>
+                            <input type="range" id="gapSize" min="0" max="50" value="20">
+                            <span id="gapValue">20px</span>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+<span class="code-comment">/* CSS Grid Basic Layout */</span>
+.<span class="code-property">grid-container</span> {
+    <span class="code-property">display</span>: <span class="code-value">grid</span>;
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">repeat(3, 1fr)</span>;
+    <span class="code-property">gap</span>: <span class="code-value">20px</span>;
+}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Layout Grid -->
+            <div class="example-section">
+                <div class="example-header">
+                    <h2>🏗️ Website Layout Grid</h2>
+                    <p>Create complex layouts using grid-template-areas</p>
+                </div>
+                <div class="example-content">
+                    <div class="layout-grid">
+                        <div class="layout-header">Header</div>
+                        <div class="layout-nav">Navigation</div>
+                        <div class="layout-main">Main Content</div>
+                        <div class="layout-sidebar">Sidebar</div>
+                        <div class="layout-footer">Footer</div>
+                    </div>
+
+                    <div class="code-example">
+<span class="code-comment">/* Website Layout with Grid Areas */</span>
+.<span class="code-property">layout-grid</span> {
+    <span class="code-property">display</span>: <span class="code-value">grid</span>;
+    <span class="code-property">grid-template-areas</span>: 
+        <span class="code-value">"header header header"
+        "nav main sidebar"
+        "footer footer footer"</span>;
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">200px 1fr 200px</span>;
+    <span class="code-property">gap</span>: <span class="code-value">15px</span>;
+}
+
+.<span class="code-property">header</span> { <span class="code-property">grid-area</span>: <span class="code-value">header</span>; }
+.<span class="code-property">nav</span> { <span class="code-property">grid-area</span>: <span class="code-value">nav</span>; }
+.<span class="code-property">main</span> { <span class="code-property">grid-area</span>: <span class="code-value">main</span>; }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: Responsive Cards -->
+            <div class="example-section">
+                <div class="example-header">
+                    <h2>📱 Responsive Card Grid</h2>
+                    <p>Auto-fitting cards that adapt to screen size</p>
+                </div>
+                <div class="example-content">
+                    <div class="responsive-cards">
+                        <div class="card">
+                            <div class="card-image">🎨 Design</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Web Design</h3>
+                                <p class="card-text">Learn modern web design principles and create beautiful, user-friendly interfaces.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-image">💻 Code</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Development</h3>
+                                <p class="card-text">Master HTML, CSS, and JavaScript to build interactive web applications.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-image">🚀 Deploy</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Deployment</h3>
+                                <p class="card-text">Learn how to deploy your applications to the web and share them with the world.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-image">📊 Analytics</div>
+                            <div class="card-content">
+                                <h3 class="card-title">Analytics</h3>
+                                <p class="card-text">Track user behavior and optimize your websites for better performance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+<span class="code-comment">/* Responsive Card Grid */</span>
+.<span class="code-property">responsive-cards</span> {
+    <span class="code-property">display</span>: <span class="code-value">grid</span>;
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">repeat(auto-fit, minmax(280px, 1fr))</span>;
+    <span class="code-property">gap</span>: <span class="code-value">25px</span>;
+}
+
+<span class="code-comment">/* Cards automatically wrap to new lines when screen gets smaller */</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactive controls for basic grid
+        const columnSlider = document.getElementById('columnCount');
+        const columnValue = document.getElementById('columnValue');
+        const gapSlider = document.getElementById('gapSize');
+        const gapValue = document.getElementById('gapValue');
+        const basicGrid = document.getElementById('basicGrid');
+
+        columnSlider.addEventListener('input', function() {
+            const columns = this.value;
+            columnValue.textContent = columns;
+            basicGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+        });
+
+        gapSlider.addEventListener('input', function() {
+            const gap = this.value;
+            gapValue.textContent = gap + 'px';
+            basicGrid.style.gap = gap + 'px';
+        });
+
+        // Add some interactive feedback
+        const gridItems = document.querySelectorAll('.grid-item');
+        gridItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            });
+        });
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
