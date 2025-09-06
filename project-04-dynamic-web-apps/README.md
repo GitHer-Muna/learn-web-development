@@ -49,24 +49,17 @@ Beautiful real-time clock with multiple time zones
 ```
 project-04-dynamic-web-apps/
 ├── dynamic-greeting/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   └── images/
+│   └── index.html
 ├── todo-app/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   └── index.html
+├── live-clock/
+│   └── index.html
 ├── weather-dashboard/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-├── interactive-clock/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   └── index.html
 └── README.md
 ```
+
+**Note:** All applications use embedded CSS and JavaScript within the HTML files for easier deployment and learning.
 
 ## Key Concepts
 

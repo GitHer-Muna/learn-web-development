@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .weather-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .location-input {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .location-input input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .location-input input:focus {
+            outline: none;
+            border-color: #74b9ff;
+        }
+
+        .location-btn {
+            padding: 15px 25px;
+            background: #74b9ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .location-btn:hover {
+            background: #0984e3;
+        }
+
+        .current-weather {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .weather-icon-section {
+            text-align: center;
+        }
+
+        .weather-icon {
+            font-size: 6rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .temperature {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .weather-description {
+            font-size: 1.5rem;
+            color: #666;
+            text-transform: capitalize;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            border-color: #74b9ff;
+        }
+
+        .detail-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #74b9ff;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .forecast {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .forecast-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .forecast-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .forecast-day {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .forecast-icon {
+            font-size: 2.5rem;
+            margin: 10px 0;
+        }
+
+        .forecast-temps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .high-temp {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .low-temp {
+            color: #3498db;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #74b9ff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .error {
+            background: #fed7d7;
+            border: 2px solid #fc8181;
+            color: #c53030;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .quick-locations {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quick-location-btn {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-location-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .weather-map {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .demo-notice {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .current-weather {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .temperature {
+                font-size: 3rem;
+            }
+            
+            .weather-icon {
+                font-size: 4rem;
+            }
+            
+            .location-input {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌤️ Weather Dashboard</h1>
+            <p>Real-time weather information and forecasts</p>
+        </div>
+
+        <div class="quick-locations">
+            <button class="quick-location-btn" onclick="getWeather('New York')">🗽 New York</button>
+            <button class="quick-location-btn" onclick="getWeather('London')">🇬🇧 London</button>
+            <button class="quick-location-btn" onclick="getWeather('Tokyo')">🗾 Tokyo</button>
+            <button class="quick-location-btn" onclick="getWeather('Paris')">🇫🇷 Paris</button>
+            <button class="quick-location-btn" onclick="getWeather('Sydney')">🇦🇺 Sydney</button>
+            <button class="quick-location-btn" onclick="getCurrentLocation()">📍 My Location</button>
+        </div>
+
+        <div class="demo-notice">
+            <strong>Demo Mode:</strong> This app shows simulated weather data for learning purposes. 
+            In a real app, you would integrate with a weather API like OpenWeatherMap.
+        </div>
+
+        <div class="weather-card">
+            <div class="location-input">
+                <input type="text" id="locationInput" placeholder="Enter city name..." value="New York">
+                <button class="location-btn" onclick="searchWeather()">🔍 Get Weather</button>
+            </div>
+
+            <div id="weatherContent">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading weather data...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="weather-map">
+            <h3 style="margin-bottom: 20px; color: #2d3748;">🗺️ Weather Map</h3>
+            <div style="background: #e9ecef; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🗺️</div>
+                    <p>Interactive weather map would go here</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">
+                        In a real app, you'd integrate with mapping services like Google Maps or Mapbox
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulated weather data for demo purposes
+        const weatherData = {
+            'new york': {
+                location: 'New York, NY',
+                current: {
+                    temperature: 22,
+                    condition: 'partly cloudy',
+                    icon: '⛅',
+                    humidity: 65,
+                    windSpeed: 12,
+                    pressure: 1013,
+                    visibility: 10,
+                    uvIndex: 6,
+                    feelsLike: 25
+                },
+                forecast: [
+                    { day: 'Today', icon: '⛅', high: 25, low: 18, condition: 'Partly Cloudy' },
+                    { day: 'Tomorrow', icon: '☀️', high: 28, low: 20, condition: 'Sunny' },
+                    { day: 'Wednesday', icon: '🌧️', high: 23, low: 16, condition: 'Light Rain' },
+                    { day: 'Thursday', icon: '⛈️', high: 21, low: 15, condition: 'Thunderstorms' },
+                    { day: 'Friday', icon: '☀️', high: 26, low: 19, condition: 'Sunny' }
+                ]
+            },
+            'london': {
+                location: 'London, UK',
+                current: {
+                    temperature: 15,
+                    condition: 'cloudy',
+                    icon: '☁️',
+                    humidity: 78,
+                    windSpeed: 8,
+                    pressure: 1008,
+                    visibility: 8,
+                    uvIndex: 3,
+                    feelsLike: 13
+                },
+                forecast: [
+                    { day: 'Today', icon: '☁️', high: 17, low: 12, condition: 'Cloudy' },
+                    { day: 'Tomorrow', icon: '🌧️', high: 16, low: 10, condition: 'Rainy' },
+                    { day: 'Wednesday', icon: '⛅', high: 18, low: 13, condition: 'Partly Cloudy' },
+                    { day: 'Thursday', icon: '☀️', high: 20, low: 14, condition: 'Sunny' },
+                    { day: 'Friday', icon: '🌧️', high: 15, low: 11, condition: 'Showers' }
+                ]
+            },
+            'tokyo': {
+                location: 'Tokyo, Japan',
+                current: {
+                    temperature: 28,
+                    condition: 'sunny',
+                    icon: '☀️',
+                    humidity: 60,
+                    windSpeed: 15,
+                    pressure: 1020,
+                    visibility: 12,
+                    uvIndex: 8,
+                    feelsLike: 31
+                },
+                forecast: [
+                    { day: 'Today', icon: '☀️', high: 30, low: 24, condition: 'Sunny' },
+                    { day: 'Tomorrow', icon: '⛅', high: 28, low: 22, condition: 'Partly Cloudy' },
+                    { day: 'Wednesday', icon: '🌧️', high: 25, low: 20, condition: 'Rain' },
+                    { day: 'Thursday', icon: '☁️', high: 24, low: 19, condition: 'Cloudy' },
+                    { day: 'Friday', icon: '☀️', high: 29, low: 23, condition: 'Sunny' }
+                ]
+            },
+            'paris': {
+                location: 'Paris, France',
+                current: {
+                    temperature: 20,
+                    condition: 'partly cloudy',
+                    icon: '⛅',
+                    humidity: 70,
+                    windSpeed: 10,
+                    pressure: 1015,
+                    visibility: 9,
+                    uvIndex: 5,
+                    feelsLike: 22
+                },
+                forecast: [
+                    { day: 'Today', icon: '⛅', high: 23, low: 17, condition: 'Partly Cloudy' },
+                    { day: 'Tomorrow', icon: '☀️', high: 25, low: 18, condition: 'Sunny' },
+                    { day: 'Wednesday', icon: '☁️', high: 21, low: 15, condition: 'Cloudy' },
+                    { day: 'Thursday', icon: '🌧️', high: 19, low: 14, condition: 'Light Rain' },
+                    { day: 'Friday', icon: '⛅', high: 22, low: 16, condition: 'Partly Cloudy' }
+                ]
+            },
+            'sydney': {
+                location: 'Sydney, Australia',
+                current: {
+                    temperature: 25,
+                    condition: 'sunny',
+                    icon: '☀️',
+                    humidity: 55,
+                    windSpeed: 18,
+                    pressure: 1018,
+                    visibility: 15,
+                    uvIndex: 9,
+                    feelsLike: 27
+                },
+                forecast: [
+                    { day: 'Today', icon: '☀️', high: 27, low: 21, condition: 'Sunny' },
+                    { day: 'Tomorrow', icon: '⛅', high: 24, low: 19, condition: 'Partly Cloudy' },
+                    { day: 'Wednesday', icon: '☀️', high: 26, low: 20, condition: 'Sunny' },
+                    { day: 'Thursday', icon: '🌧️', high: 22, low: 17, condition: 'Showers' },
+                    { day: 'Friday', icon: '⛈️', high: 20, low: 16, condition: 'Storms' }
+                ]
+            }
+        };
+
+        function searchWeather() {
+            const location = document.getElementById('locationInput').value.trim();
+            if (location) {
+                getWeather(location);
+            }
+        }
+
+        function getWeather(location) {
+            const weatherContent = document.getElementById('weatherContent');
+            
+            // Show loading
+            weatherContent.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading weather data for ${location}...</p>
+                </div>
+            `;
+
+            // Simulate API delay
+            setTimeout(() => {
+                displayWeather(location);
+            }, 1500);
+        }
+
+        function displayWeather(location) {
+            const key = location.toLowerCase();
+            const data = weatherData[key];
+            const weatherContent = document.getElementById('weatherContent');
+
+            if (!data) {
+                weatherContent.innerHTML = `
+                    <div class="error">
+                        <h3>⚠️ Location Not Found</h3>
+                        <p>Sorry, we don't have weather data for "${location}". Try one of the quick location buttons above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            weatherContent.innerHTML = `
+                <div class="current-weather">
+                    <div class="weather-icon-section">
+                        <div class="weather-icon">${data.current.icon}</div>
+                        <div class="temperature">${data.current.temperature}°C</div>
+                        <div class="weather-description">${data.current.condition}</div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-card">
+                            <div class="detail-icon">🌡️</div>
+                            <div class="detail-label">Feels like</div>
+                            <div class="detail-value">${data.current.feelsLike}°C</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">💧</div>
+                            <div class="detail-label">Humidity</div>
+                            <div class="detail-value">${data.current.humidity}%</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">💨</div>
+                            <div class="detail-label">Wind Speed</div>
+                            <div class="detail-value">${data.current.windSpeed} km/h</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">🧭</div>
+                            <div class="detail-label">Pressure</div>
+                            <div class="detail-value">${data.current.pressure} hPa</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">👁️</div>
+                            <div class="detail-label">Visibility</div>
+                            <div class="detail-value">${data.current.visibility} km</div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">☀️</div>
+                            <div class="detail-label">UV Index</div>
+                            <div class="detail-value">${data.current.uvIndex}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 30px 0 20px; color: #2d3748; text-align: center;">📅 5-Day Forecast</h3>
+                <div class="forecast">
+                    ${data.forecast.map(day => `
+                        <div class="forecast-card">
+                            <div class="forecast-day">${day.day}</div>
+                            <div class="forecast-icon">${day.icon}</div>
+                            <div style="color: #666; font-size: 0.9rem; margin: 10px 0;">${day.condition}</div>
+                            <div class="forecast-temps">
+                                <span class="high-temp">${day.high}°</span>
+                                <span class="low-temp">${day.low}°</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // Update location input
+            document.getElementById('locationInput').value = data.location;
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        // In a real app, you'd reverse geocode the coordinates
+                        // For demo, we'll just show New York
+                        getWeather('New York');
+                    },
+                    error => {
+                        alert('Unable to get your location. Please enter a city manually.');
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+
+        // Enter key support
+        document.getElementById('locationInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchWeather();
+            }
+        });
+
+        // Initialize with New York weather
+        getWeather('New York');
+    </script>
+</body>
+</html>

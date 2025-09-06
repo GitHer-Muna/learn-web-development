@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Web Apps - Project Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .app-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #e9ecef;
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .app-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .app-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 30px;
+            color: #2d3748;
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #4ECDC4;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .feature p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 Dynamic Web Apps</h1>
+            <p>Advanced JavaScript applications with real-time features</p>
+        </div>
+
+        <div class="apps-grid">
+            <div class="app-card">
+                <div class="app-icon">✅</div>
+                <div class="app-title">Todo App</div>
+                <div class="app-description">
+                    A feature-rich todo application with local storage, categories, and task management.
+                </div>
+                <div class="app-links">
+                    <a href="todo-app/index.html" class="btn btn-primary">Try App</a>
+                    <a href="todo-app/" class="btn btn-secondary">View Code</a>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-icon">🌅</div>
+                <div class="app-title">Dynamic Greeting</div>
+                <div class="app-description">
+                    Smart greeting system that adapts to time of day and user preferences.
+                </div>
+                <div class="app-links">
+                    <a href="dynamic-greeting/index.html" class="btn btn-primary">Try App</a>
+                    <a href="dynamic-greeting/" class="btn btn-secondary">View Code</a>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-icon">🕒</div>
+                <div class="app-title">Live Clock</div>
+                <div class="app-description">
+                    Real-time digital clock with multiple time zones and customizable themes.
+                </div>
+                <div class="app-links">
+                    <a href="live-clock/index.html" class="btn btn-primary">Try App</a>
+                    <a href="live-clock/" class="btn btn-secondary">View Code</a>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-icon">🌤️</div>
+                <div class="app-title">Weather Dashboard</div>
+                <div class="app-description">
+                    Local weather information with interactive displays and forecasts.
+                </div>
+                <div class="app-links">
+                    <a href="weather-dashboard/index.html" class="btn btn-primary">Try App</a>
+                    <a href="weather-dashboard/" class="btn btn-secondary">View Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <h2>What You'll Learn</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">💾</div>
+                    <h3>Data Persistence</h3>
+                    <p>Local storage and session management</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-time Updates</h3>
+                    <p>Live data and dynamic content</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern JavaScript</h3>
+                    <p>ES6+ features and best practices</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Advanced APIs</h3>
+                    <p>Browser APIs and external services</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

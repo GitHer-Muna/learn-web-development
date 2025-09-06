@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Greeting System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .greeting-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.5s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .time-display {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Courier New', monospace;
+        }
+
+        .date-display {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .greeting-text {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            transition: all 0.5s ease;
+        }
+
+        .greeting-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .greeting-message {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .user-setup {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .save-btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #5a67d8;
+        }
+
+        .weather-info {
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .mood-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .mood-btn {
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .mood-btn:hover,
+        .mood-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Dynamic backgrounds */
+        .morning {
+            background: linear-gradient(135deg, #FFE49C 0%, #FFD700 100%);
+        }
+
+        .afternoon {
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+        }
+
+        .evening {
+            background: linear-gradient(135deg, #FF7F50 0%, #FF6347 100%);
+        }
+
+        .night {
+            background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+            color: white;
+        }
+
+        .night .greeting-card {
+            background: rgba(52, 73, 94, 0.9);
+            color: white;
+        }
+
+        .night .time-display,
+        .night .greeting-text {
+            color: white;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .greeting-card {
+                padding: 40px 20px;
+            }
+            
+            .time-display {
+                font-size: 2.5rem;
+            }
+            
+            .greeting-text {
+                font-size: 2rem;
+            }
+            
+            .mood-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body class="morning">
+    <div class="container">
+        <div class="greeting-card">
+            <div class="greeting-emoji" id="greetingEmoji">🌅</div>
+            <div class="time-display" id="timeDisplay">00:00:00</div>
+            <div class="date-display" id="dateDisplay">Monday, January 1, 2025</div>
+            <div class="greeting-text" id="greetingText">Good Morning!</div>
+            <div class="greeting-message" id="greetingMessage">Hope you have a wonderful day ahead!</div>
+
+            <div class="user-setup" id="userSetup">
+                <h3 style="margin-bottom: 20px; color: #2d3748;">Personalize Your Experience</h3>
+                <div class="input-group">
+                    <label for="userName">Your Name:</label>
+                    <input type="text" id="userName" placeholder="Enter your name">
+                </div>
+                <div class="input-group">
+                    <label for="userTimezone">Timezone:</label>
+                    <select id="userTimezone">
+                        <option value="auto">Auto-detect</option>
+                        <option value="America/New_York">Eastern Time</option>
+                        <option value="America/Chicago">Central Time</option>
+                        <option value="America/Denver">Mountain Time</option>
+                        <option value="America/Los_Angeles">Pacific Time</option>
+                        <option value="Europe/London">London</option>
+                        <option value="Europe/Paris">Paris</option>
+                        <option value="Asia/Tokyo">Tokyo</option>
+                        <option value="Asia/Shanghai">Shanghai</option>
+                    </select>
+                </div>
+                <button class="save-btn" onclick="saveUserSettings()">Save Settings</button>
+            </div>
+
+            <div class="mood-selector">
+                <button class="mood-btn" onclick="setMood('happy')">😊 Happy</button>
+                <button class="mood-btn" onclick="setMood('productive')">💪 Productive</button>
+                <button class="mood-btn" onclick="setMood('relaxed')">😌 Relaxed</button>
+                <button class="mood-btn" onclick="setMood('motivated')">🚀 Motivated</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="visitCount">1</div>
+                    <div class="stat-label">Visits Today</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="streakCount">1</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="moodCount">😊</div>
+                    <div class="stat-label">Current Mood</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let userSettings = JSON.parse(localStorage.getItem('greetingSettings')) || {
+            name: '',
+            timezone: 'auto',
+            mood: 'happy'
+        };
+
+        let stats = JSON.parse(localStorage.getItem('greetingStats')) || {
+            visitCount: 0,
+            lastVisit: null,
+            streak: 1,
+            totalVisits: 0
+        };
+
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], {
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            
+            const dateString = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('timeDisplay').textContent = timeString;
+            document.getElementById('dateDisplay').textContent = dateString;
+
+            updateGreeting(now);
+        }
+
+        function updateGreeting(now) {
+            const hour = now.getHours();
+            let timeOfDay, emoji, greeting, message, bgClass;
+
+            if (hour >= 5 && hour < 12) {
+                timeOfDay = 'morning';
+                emoji = '🌅';
+                greeting = `Good Morning${userSettings.name ? ', ' + userSettings.name : ''}!`;
+                message = getMoodMessage('morning');
+                bgClass = 'morning';
+            } else if (hour >= 12 && hour < 17) {
+                timeOfDay = 'afternoon';
+                emoji = '☀️';
+                greeting = `Good Afternoon${userSettings.name ? ', ' + userSettings.name : ''}!`;
+                message = getMoodMessage('afternoon');
+                bgClass = 'afternoon';
+            } else if (hour >= 17 && hour < 21) {
+                timeOfDay = 'evening';
+                emoji = '🌅';
+                greeting = `Good Evening${userSettings.name ? ', ' + userSettings.name : ''}!`;
+                message = getMoodMessage('evening');
+                bgClass = 'evening';
+            } else {
+                timeOfDay = 'night';
+                emoji = '🌙';
+                greeting = `Good Night${userSettings.name ? ', ' + userSettings.name : ''}!`;
+                message = getMoodMessage('night');
+                bgClass = 'night';
+            }
+
+            document.getElementById('greetingEmoji').textContent = emoji;
+            document.getElementById('greetingText').textContent = greeting;
+            document.getElementById('greetingMessage').textContent = message;
+
+            // Update background
+            document.body.className = bgClass;
+        }
+
+        function getMoodMessage(timeOfDay) {
+            const messages = {
+                morning: {
+                    happy: "Start your day with a smile! ☀️",
+                    productive: "Time to tackle your goals! 💪",
+                    relaxed: "Take it easy and enjoy the morning 🧘‍♀️",
+                    motivated: "You're going to crush it today! 🚀"
+                },
+                afternoon: {
+                    happy: "Hope your day is going wonderfully! 😊",
+                    productive: "Keep up the great work! 👏",
+                    relaxed: "Perfect time for a peaceful break ☕",
+                    motivated: "You're halfway there, keep pushing! 💪"
+                },
+                evening: {
+                    happy: "Wind down and enjoy your evening! 🌸",
+                    productive: "Reflect on today's achievements 📝",
+                    relaxed: "Time to relax and unwind 🛋️",
+                    motivated: "Plan for tomorrow's success! 📋"
+                },
+                night: {
+                    happy: "Sweet dreams and rest well! 💤",
+                    productive: "You earned your rest today 🌙",
+                    relaxed: "Peace and tranquility await 🌌",
+                    motivated: "Dream big for tomorrow! ⭐"
+                }
+            };
+
+            const timeMessages = messages[timeOfDay];
+            return timeMessages[userSettings.mood] || timeMessages.happy;
+        }
+
+        function saveUserSettings() {
+            const name = document.getElementById('userName').value.trim();
+            const timezone = document.getElementById('userTimezone').value;
+
+            userSettings.name = name;
+            userSettings.timezone = timezone;
+
+            localStorage.setItem('greetingSettings', JSON.stringify(userSettings));
+            
+            // Hide setup if name is provided
+            if (name) {
+                document.getElementById('userSetup').style.display = 'none';
+            }
+
+            updateTime(); // Refresh greeting with new name
+        }
+
+        function setMood(mood) {
+            userSettings.mood = mood;
+            localStorage.setItem('greetingSettings', JSON.stringify(userSettings));
+
+            // Update active mood button
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update mood display
+            const moodEmojis = {
+                happy: '😊',
+                productive: '💪',
+                relaxed: '😌',
+                motivated: '🚀'
+            };
+            document.getElementById('moodCount').textContent = moodEmojis[mood];
+
+            updateTime(); // Refresh message
+        }
+
+        function updateStats() {
+            const today = new Date().toDateString();
+            
+            if (stats.lastVisit !== today) {
+                if (stats.lastVisit) {
+                    const lastDate = new Date(stats.lastVisit);
+                    const todayDate = new Date(today);
+                    const daysDiff = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysDiff === 1) {
+                        stats.streak++;
+                    } else {
+                        stats.streak = 1;
+                    }
+                } else {
+                    stats.streak = 1;
+                }
+                
+                stats.visitCount = 1;
+                stats.lastVisit = today;
+            } else {
+                stats.visitCount++;
+            }
+            
+            stats.totalVisits++;
+            localStorage.setItem('greetingStats', JSON.stringify(stats));
+
+            // Update display
+            document.getElementById('visitCount').textContent = stats.visitCount;
+            document.getElementById('streakCount').textContent = stats.streak;
+            
+            const moodEmojis = {
+                happy: '😊',
+                productive: '💪',
+                relaxed: '😌',
+                motivated: '🚀'
+            };
+            document.getElementById('moodCount').textContent = moodEmojis[userSettings.mood];
+        }
+
+        function initializeApp() {
+            // Load user settings
+            if (userSettings.name) {
+                document.getElementById('userName').value = userSettings.name;
+                document.getElementById('userSetup').style.display = 'none';
+            }
+            
+            document.getElementById('userTimezone').value = userSettings.timezone;
+
+            // Set active mood
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(userSettings.mood)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            updateStats();
+            updateTime();
+            
+            // Update time every second
+            setInterval(updateTime, 1000);
+        }
+
+        // Initialize the app
+        initializeApp();
+    </script>
+</body>
+</html>
