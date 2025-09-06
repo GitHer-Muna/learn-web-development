@@ -1,6 +1,15 @@
-# 🤝 Contributing to Introduction to Web Development
+# 🤝 Contributing to Learn Web Development
 
 First off, thank you for considering contributing to this project! 🎉 It's people like you that make this learning resource amazing for students worldwide.
+
+## 👥 Core Contributors
+
+Special thanks to our core team who help maintain and improve this repository:
+
+- **[@GitHer-Muna](https://github.com/GitHer-Muna)** - Project Lead & Main Developer
+- **[@gokulupadhyayguragain](https://github.com/gokulupadhyayguragain)** - Contributor
+- **[@ImmrBhattarai](https://github.com/ImmrBhattarai)** - Contributor  
+- **[@lok001esh](https://github.com/lok001esh)** - Contributor
 
 ## 🌟 Why Contribute?
 

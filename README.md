@@ -107,6 +107,17 @@ intro-to-web-development/
 - 🎨 **Customize projects** - Make them your own!
 - 📝 **Document your learning** - Keep notes of what you learn
 
+## 👥 Contributors
+
+This project is made possible by our amazing contributors:
+
+- **[@GitHer-Muna](https://github.com/GitHer-Muna)** - Project Lead & Main Developer
+- **[@gokulupadhyayguragain](https://github.com/gokulupadhyayguragain)** - Contributor
+- **[@ImmrBhattarai](https://github.com/ImmrBhattarai)** - Contributor  
+- **[@lok001esh](https://github.com/lok001esh)** - Contributor
+
+Thank you for making this learning resource better for everyone! 🎉
+
 ## 🤝 Contributing
 
 We love contributions from the community! This repository thrives because of students helping students.
